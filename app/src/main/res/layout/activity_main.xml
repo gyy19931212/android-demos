@@ -21,32 +21,38 @@
             <TextView
                 android:onClick="getDeviceInfo"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Hello World!"
+                android:layout_height="wrap_content"
+                android:text="getDeviceInfo"
+                android:padding="10dp"
                 android:gravity="center"
                 android:background="@color/colorAccent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <!--微信支付 -->
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_margin="10dp"
-                android:background="@android:color/white"
-                android:layout_height="50dp">
-                <TextView
+                android:layout_height="wrap_content">
+                <Button
+                    android:onClick="deleteAlias"
+                    android:text="删除极光别名"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <EditText
+                    android:id="@+id/alias_edit"
+                    android:inputType="phone"
+                    android:hint="请填写极光别名"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:text="微信支付"
-                    android:gravity="center"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <CheckBox
+                    android:layout_height="50dp" />
+
+                <Button
+                    android:onClick="setAlias"
+                    android:text="设置极光别名"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
+
             <!--支付宝支付 -->
             <LinearLayout
                 android:orientation="horizontal"

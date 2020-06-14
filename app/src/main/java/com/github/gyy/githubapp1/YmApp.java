@@ -7,15 +7,18 @@ import android.support.multidex.MultiDex;
 import android.util.Log;
 
 import com.bun.miitmdid.core.JLibrary;
+import com.github.gyy.githubapp1.jiguang.JPushUtil;
 
 public class YmApp extends Application {
 
 
-    public static String oaid;
+
     private static volatile YmApp instance = null;
     public static YmApp getInstance() {
         return instance;
     }
+
+    public static String oaid;
     private static boolean isSupportOaid=true;
     private static int errorCode;
 
@@ -49,6 +52,8 @@ public class YmApp extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //初始化极光
+        JPushUtil.init(this);
 
     }
 

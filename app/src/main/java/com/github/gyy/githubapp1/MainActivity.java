@@ -6,22 +6,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
 
+import com.github.gyy.githubapp1.jiguang.JPushUtil;
 import com.github.gyy.githubapp1.oaid.DevicesUtil;
 import com.github.gyy.githubapp1.keyboard.Keyboard;
+import com.github.gyy.githubapp1.sp.GlobalKey;
+import com.github.gyy.githubapp1.sp.SharedPrefGlobal;
 
 public class MainActivity extends AppCompatActivity {
-    //控件
     ScrollView scroll_view;
+    //自定义键盘
     Keyboard key_board;
     EditText edit_view;
     View key_show;
-    //数据
     String[] KEY;
     StringBuffer stringBuffer = new StringBuffer();
+    //
+    EditText alias_edit;
+    SharedPrefGlobal sp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sp = new SharedPrefGlobal.Builder().setFileName(GlobalKey.FILE_USER).create(this);
 
         initView();
         //初始化oaid
@@ -34,11 +40,28 @@ public class MainActivity extends AppCompatActivity {
         DevicesUtil.getOaid();
     }
 
+    public void setAlias(View view) {
+        String PHONE = alias_edit.getText().toString();
+
+        sp.put(GlobalKey.PHONE, PHONE);
+        JPushUtil.setAlias(getApplication(), PHONE);
+
+    }
+
+    public void deleteAlias(View view) {
+
+        sp.put(GlobalKey.PHONE, "");
+        JPushUtil.deleteAlias(this);
+    }
+
+
     private void initView() {
         key_board = findViewById(R.id.keyboard);
         edit_view = findViewById(R.id.edit_view);
         key_show = findViewById(R.id.key_show);
         scroll_view = findViewById(R.id.scroll_view);
+        alias_edit = findViewById(R.id.alias_edit);
+
 
         key_show.setOnClickListener(new View.OnClickListener() {
             @Override

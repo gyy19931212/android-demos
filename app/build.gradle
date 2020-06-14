@@ -13,6 +13,12 @@ android {
         ndk {
             abiFilters 'armeabi-v7a','x86','arm64-v8a','x86_64','armeabi'
         }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : "com.github.gyy.githubapp1",
+                JPUSH_APPKEY : "0ac4981af19c26576b964722", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -36,6 +42,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //
+    //oaid的aar
     implementation(name: 'msa_mdid_1.0.13', ext: 'aar')
+    //极光
+    compile 'cn.jiguang.sdk:jpush:3.6.6'  // 此处以JPush 3.6.6 版本为例。
+    compile 'cn.jiguang.sdk:jcore:2.3.8'  // 此处以JCore 2.3.8 版本为例。
 }
